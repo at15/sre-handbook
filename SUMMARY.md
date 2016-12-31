@@ -2,6 +2,12 @@
 
 * [About the book](README.md)
 
+## Network
+
+* [Introduction](network/README.md)
+* [IP](network/ip.md)
+* [DHCP](network/dhcp.md)
+
 ## Questions
 
 * [Introduction](questions/README.md)

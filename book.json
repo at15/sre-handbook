@@ -1,6 +1,7 @@
 {
     "plugins" : [
-        "simple-page-toc"
+        "simple-page-toc",
+        "todo"
     ],
     "pluginsConfig": {
         "simple-page-toc": {

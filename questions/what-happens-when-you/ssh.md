@@ -10,11 +10,9 @@ NOTE: most of this section is directly from [digitalocean's community tutorial](
 
 ### SSH
 
-Secure Shell is a cryptographic network protocol for [^1]
+Secure Shell is a cryptographic network protocol for operating network services securely over an untrusted network[^1].
 
 ### Symmetric Encryption
-
-
 
 - One key can be used for both encypt and decrypt.
 - Symmetric keys are used by SSH in order to encrypt the entire connection.
