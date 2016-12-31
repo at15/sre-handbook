@@ -9,7 +9,9 @@ I use it as a memo, and it can be used as a quick recap for preparing interview.
 - [Read it online](https://at15.gitbooks.io/sre-handbook)
 - [Install GitBook](https://github.com/GitbookIO/gitbook/blob/master/docs/setup.md),
 clone the repository, read it locally. (I prefer this one)
-
+  - run `gitbook install` to install the plugins
+  - run `gitbook serve` to have live preview
+  
 ## Content
 
 <!-- TODO: this part should be synchronized with SUMMARY.md except the introduction part -->
