@@ -46,12 +46,69 @@ by user to avoid certain level of DNS pollution [^5], i.e. use `8.8.8.8` [^6]
 TLS and SSH key exchange is different because TLS use public/private key and
 invlove trused CA
 
-The so one is just way too simple
+### ARP process
+
+TODO: after finish the layer stuff
+
+### TCP three-way handshake
+
+#### Flags
+
+- SYN: synchronize sequence number, Only the first packet sent from each end should have this flag set. Some other flags and fields change meaning based on this flag, and some are only valid for when it is set, and others when it is clear. [^7]
+- ACK: indicates that the Acknowledgment field is significant. All packets after the initial SYN packet sent by the client should have this flag set [^7]
+
+#### Values
+
+- Sequence number
+  - ISN: initial sequence number If the SYN flag is set (1)
+  - SEQ: If the SYN flag is clear (0), then this is the accumulated sequence number of the first data byte of this segment for the current session
+- Acknowledgment number: if the ACK flag is set then the value of this field is the next sequence number that the sender is expecting. This acknowledges receipt of all prior bytes (if any). The first ACK sent by each end acknowledges the other end's initial sequence number itself, but no data.
+
+#### Procedure
+
+- SYN: Client
+  - client choose ISN, A
+  - set the SYN bit to indicate it is setting the ISN
+  - send the packet to the server
+- SYN-ACK: Server
+  - server choose ISN, B
+  - set the SYN bit to indicate it is setting the ISN
+  - set the ACK bit to indicate it is acknowledging receipt of the first packet
+  - set ACK as A+1
+  - send the packet to the client
+- ACK: Client
+  - set SEQ to A+1
+  - set ACK bit
+  - set ACK as B+1
+  - send the packet to the server
+
+### TLS handshake
+
+Transport Layer Security (TLS) and its predecessor, Secure Sockets Layer (SSL), both frequently referred to as "SSL", are cryptographic protocols that provide communications security over a computer network. [^8]
+
+The following is a mix of [^1] and [^8]
+
+- client ask the server to use TLS (i.e. use https port 443)
+- client provide the server a list of cipher suites it supports
+- server pick one cipher suites it also support, send it back with its public key signed by a CA (Certificate Authority)
+- client verify the digital certificate against its list of trusted CAs before proceeding
+- generate the symmetric key for encrypt following communication, either
+  - **use Diffie-Hellman as SSH** does, if the server's private key is disclosed in the future, it can not be used to decrypt the current sessions (recorded by third party)
+  - client **use server's public key to encrypt a random number** and send to server
+  - server decrypt using its private key to get the random number and generate its own copy of symmetric key
+  - client generate hash of its own copy of symmetric key, send `Finish` message with its hash to server encrypted using the symmetric key
+  - server generate hash of its own copy of symmetric key and compare with decrypted client-sent hash.
+  if matches, server send `Finish` message to client encrypted using the symmetric key
+- encypt the following communication using the symmetric key
+
+
+- More detail can be found in [wiki](https://en.wikipedia.org/wiki/Transport_Layer_Security#Basic_TLS_handshake)
+- If CA is compromised, then using server's public key to generate the symmetric is not safe.
+
 
 ## TODO:
 
-- [ ] http://stackoverflow.com/questions/2092527/what-happens-when-you-type-in-a-url-in-browser
-- [ ] remember to talk about HTTPS, TCP
+- [ ] The so one is just way too simple http://stackoverflow.com/questions/2092527/what-happens-when-you-type-in-a-url-in-browser
 - [ ] SSL != TLS https://en.wikipedia.org/wiki/Public-key_cryptography#Weaknesses
 
 ## References
@@ -62,3 +119,5 @@ The so one is just way too simple
 [^4]: https://en.wikipedia.org/wiki/HTTP_ETag
 [^5]: https://en.wikipedia.org/wiki/DNS_spoofing
 [^6]: https://developers.google.com/speed/public-dns/
+[^7]: https://en.wikipedia.org/wiki/Transmission_Control_Protocol
+[^8]: https://en.wikipedia.org/wiki/Transport_Layer_Security
