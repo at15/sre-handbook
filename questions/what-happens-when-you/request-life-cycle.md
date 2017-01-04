@@ -27,6 +27,8 @@ What happens when you enter URL in browser
   - Server can check the header by browser (i.e. `ETag`[^4]) to determine if browser
   has valid cache, if so, it returns `304` with empty body
 
+- TODO: ethernet address (also named a MAC address)
+
 ## Procedure
 
 ### DNS lookup
@@ -48,7 +50,20 @@ invlove trused CA
 
 ### ARP process
 
-TODO: after finish the layer stuff
+The Address Resolution Protocol (ARP) is a telecommunication protocol used for
+resolution of Internet layer addresses into link layer addresses [^9].
+<!-- NOTE: in [^9] it's named a, but I think it should be named as -->
+i.e. From IPv4 addresses to a physical address like an **Ethernet address** (also named as **MAC address**)
+
+- For IPv6, functionality of ARp is provided by the [Neighbor Discovery Protocol (NDP)](https://en.wikipedia.org/wiki/Neighbor_Discovery_Protocol)
+
+- TODO: Computer 1 has to send a broadcast ARP message (destination FF:FF:FF:FF:FF:FF MAC address, which is accepted by all computers) requesting an answer for 192.168.0.55
+  - this didn't conisder gateways or routers
+
+- ARP probe, test if this address is already used by someone else
+  - [ ] TODO: what if some bad guy always say it is in use?
+
+- [ ] TODO: hub, router, switch https://s905060.gitbooks.io/site-reliability-engineer-handbook/content/hubs_vs_switches_vs_routers__networking_device_fundamentals.html
 
 ### TCP three-way handshake
 
@@ -107,13 +122,16 @@ The following is a mix of [^1] and [^8]
 
 ### HTTP
 
-- [ ] TODO: HTTP2, how do brower know server support HTTP2
+
 
 ## TODO:
 
 - [ ] HTTP
+- [ ] HTTP2, how do brower know server support HTTP2
+- [ ] Encapsulation and Decapsulation
 - [ ] The stackoverflow one is just way too simple http://stackoverflow.com/questions/2092527/what-happens-when-you-type-in-a-url-in-browser
 - [ ] SSL != TLS https://en.wikipedia.org/wiki/Public-key_cryptography#Weaknesses
+
 
 ## References
 
@@ -125,3 +143,4 @@ The following is a mix of [^1] and [^8]
 [^6]: https://developers.google.com/speed/public-dns/
 [^7]: https://en.wikipedia.org/wiki/Transmission_Control_Protocol
 [^8]: https://en.wikipedia.org/wiki/Transport_Layer_Security
+[^9]: https://en.wikipedia.org/wiki/Address_Resolution_Protocol

@@ -8,6 +8,7 @@
 * [Model](network/model.md)
 * [IP](network/ip.md)
 * [DHCP](network/dhcp.md)
+* [Hub, Switch, Router](network/hub-switch-router.md)
 
 ## Questions
 
