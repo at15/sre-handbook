@@ -105,10 +105,14 @@ The following is a mix of [^1] and [^8]
 - More detail can be found in [wiki](https://en.wikipedia.org/wiki/Transport_Layer_Security#Basic_TLS_handshake)
 - If CA is compromised, then using server's public key to generate the symmetric is not safe.
 
+### HTTP
+
+- [ ] TODO: HTTP2, how do brower know server support HTTP2
 
 ## TODO:
 
-- [ ] The so one is just way too simple http://stackoverflow.com/questions/2092527/what-happens-when-you-type-in-a-url-in-browser
+- [ ] HTTP
+- [ ] The stackoverflow one is just way too simple http://stackoverflow.com/questions/2092527/what-happens-when-you-type-in-a-url-in-browser
 - [ ] SSL != TLS https://en.wikipedia.org/wiki/Public-key_cryptography#Weaknesses
 
 ## References

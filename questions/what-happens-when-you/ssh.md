@@ -65,7 +65,7 @@ This part is mainly from [^2]
 
 ### Establish connection
 
-- same as how browser establish TCP connection, see TODO: for detail
+- same as how browser establish TCP connection, see [TCP three-way handshake in request life cycle](./request-life-cycle.md)
 - after TCP connection establish, server reponds with the protocol version it supports [^2],
 if client support one of it, then the connection continues.
 - server also provide its public host key, which is why you see a warning ask you [Y/N]

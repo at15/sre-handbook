@@ -5,6 +5,7 @@
 ## Network
 
 * [Introduction](network/README.md)
+* [Model](network/model.md)
 * [IP](network/ip.md)
 * [DHCP](network/dhcp.md)
 
