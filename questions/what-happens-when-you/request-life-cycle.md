@@ -55,15 +55,39 @@ resolution of Internet layer addresses into link layer addresses [^9].
 <!-- NOTE: in [^9] it's named a, but I think it should be named as -->
 i.e. From IPv4 addresses to a physical address like an **Ethernet address** (also named as **MAC address**)
 
-- For IPv6, functionality of ARp is provided by the [Neighbor Discovery Protocol (NDP)](https://en.wikipedia.org/wiki/Neighbor_Discovery_Protocol)
+#### IPv4
 
-- TODO: Computer 1 has to send a broadcast ARP message (destination FF:FF:FF:FF:FF:FF MAC address, which is accepted by all computers) requesting an answer for 192.168.0.55
-  - this didn't conisder gateways or routers
+- Check ARP Cache, if target IP is found, following step are skiped
+- Check route table, to see if the Target IP address is on any of the subnets on the local route table. If it is, the library uses the interface associated with that subnet. If it is not, the library uses the interface that has the subnet of our default gateway. [^1]
+- Look up the MAC address of the selected network interface [^1]
+- Sends a Layer 2 (data link layer of the OSI model) ARP request:
+
+````
+Sender MAC: interface:mac:address:here
+Sender IP: interface.ip.goes.here
+Target MAC: FF:FF:FF:FF:FF:FF (Broadcast)
+Target IP: target.ip.goes.here
+````
+
+Router gives ARP reply
+
+````
+Sender MAC: target:mac:address:here
+Sender IP: target.ip.goes.here
+Target MAC: interface:mac:address:here
+Target IP: interface.ip.goes.here
+````
+
+- [ ] How does the router come up with reply, it has to ask other router if this is outside its network?
+<!-- - TODO: Computer 1 has to send a broadcast ARP message (destination FF:FF:FF:FF:FF:FF MAC address, which is accepted by all computers) requesting an answer for 192.168.0.55
+  - this didn't conisder gateways or routers -->
 
 - ARP probe, test if this address is already used by someone else
   - [ ] TODO: what if some bad guy always say it is in use?
 
-- [ ] TODO: hub, router, switch https://s905060.gitbooks.io/site-reliability-engineer-handbook/content/hubs_vs_switches_vs_routers__networking_device_fundamentals.html
+#### IPv6
+
+For IPv6, functionality of ARP is provided by the [Neighbor Discovery Protocol (NDP)](https://en.wikipedia.org/wiki/Neighbor_Discovery_Protocol)
 
 ### TCP three-way handshake
 
@@ -131,7 +155,7 @@ The following is a mix of [^1] and [^8]
 - [ ] Encapsulation and Decapsulation
 - [ ] The stackoverflow one is just way too simple http://stackoverflow.com/questions/2092527/what-happens-when-you-type-in-a-url-in-browser
 - [ ] SSL != TLS https://en.wikipedia.org/wiki/Public-key_cryptography#Weaknesses
-
+- [ ] When I use `arp` I only found two entry, me and the router. But other people do have multiple entries.
 
 ## References
 
