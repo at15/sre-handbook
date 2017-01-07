@@ -17,3 +17,5 @@
   * [Press the power button](questions/what-happens-when-you/system-boot.md)
   * [Enter URL in browser](questions/what-happens-when-you/request-life-cycle.md)
   * [SSH into a server](questions/what-happens-when-you/ssh.md)
+* [How to](questions/how-to/README.md)
+  * [Monitor a website](questions/how-to/monitor-a-website.md)
